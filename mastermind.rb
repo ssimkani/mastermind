@@ -49,6 +49,19 @@ def correct_num_and_spot(guess, code)
   [correct_num_spot, index_correct_num_spot]
 end
 
+def correct_num_only(guess, code)
+  multiple_count_hash_code = multiple_count(code)
+  multiple_count_hash_guess = multiple_count(guess)
+  correct_num = 0
+  guess.each { |number| correct_num += 1 if code.include?(number) }
+  guess.to_set.each do |number|
+    if code.include?(number) && multiple_count_hash_guess[number] > multiple_count_hash_code[number]
+      correct_num -= (multiple_count_hash_guess[number] - multiple_count_hash_code[number])
+    end
+  end
+  correct_num
+end
+
 def multiple_count(num_str)
   multiple_count_hash = {}
   num_str.each { |num| multiple_count_hash[num] = num_str.count(num) }
