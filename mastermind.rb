@@ -48,4 +48,11 @@ def correct_num_and_spot(guess, code)
   end
   [correct_num_spot, index_correct_num_spot]
 end
+
+def multiple_count(num_str)
+  multiple_count_hash = {}
+  num_str.each { |num| multiple_count_hash[num] = num_str.count(num) }
+  multiple_count_hash
+end
+
 attr_reader :code
