@@ -37,4 +37,15 @@ def player_guess(counter)
   end
 end
 
+def correct_num_and_spot(guess, code)
+  correct_num_spot = 0
+  index_correct_num_spot = []
+  guess.each_with_index do |number, index|
+    if code[index] == number
+      correct_num_spot += 1
+      index_correct_num_spot << index
+    end
+  end
+  [correct_num_spot, index_correct_num_spot]
+end
 attr_reader :code
