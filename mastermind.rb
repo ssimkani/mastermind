@@ -36,3 +36,5 @@ def player_guess(counter)
     player_guess(counter)
   end
 end
+
+attr_reader :code
