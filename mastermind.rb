@@ -25,3 +25,14 @@ def computer_code
   end
   code
 end
+
+def player_guess(counter)
+  print "Enter guess number #{counter + 1}: "
+  guess = gets.chomp
+  if guess.chars.all? { |char| char.to_i <= 6 && char.to_i.positive? } && guess.length == 4
+    guess
+  else
+    puts "Please enter a valid guess.\n\n"
+    player_guess(counter)
+  end
+end
