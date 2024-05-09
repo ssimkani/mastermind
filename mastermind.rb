@@ -37,6 +37,18 @@ def player_guess(counter)
   end
 end
 
+def compare(guess, code)
+  guess = guess.split('')
+  correct_number_and_spot = correct_num_and_spot(guess, code)
+
+  guess = guess.each_with_index.reject { |_, index| correct_number_and_spot[1].include?(index) }.map(&:first)
+
+  code = code.each_with_index.reject { |_, index| correct_number_and_spot[1].include?(index) }.map(&:first)
+
+  correct_number_only = correct_num_only(guess, code)
+  [correct_number_and_spot, correct_number_only]
+end
+
 def correct_num_and_spot(guess, code)
   correct_num_spot = 0
   index_correct_num_spot = []
