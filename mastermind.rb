@@ -3,15 +3,27 @@
 require 'set'
 
 class MasterMind
-  attr_reader :codemaker, :codebreaker, :winner
+  attr_reader :code_maker, :code_breaker, :winner
 
   def initialize
-    @codemaker = 'Player'
-    @codebreaker = 'Computer'
+    @code_maker = 'Player'
+    @code_breaker = 'Computer'
     @winner = nil
     @code = []
     @first_call_computer_code = false
   end
+end
+
+def play
+  counter = 0
+  while counter < 12 && winner.nil?
+    display_feedback(player_guess(counter), computer_code)
+    counter += 1
+  end
+  puts 'You guessed the code correctly!' if winner == 'Player'
+
+  puts "You didn't guess the code correctly. The correct code was #{code.join}." if winner.nil?
+  @winner = 'Computer'
 end
 
 protected
