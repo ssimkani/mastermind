@@ -113,7 +113,12 @@ class MasterMind
   attr_reader :code
 end
 
-module Algorithm
+class Algorithm
+  attr_reader :guess
+
+  def initialize
+    @guess = '1111'
+  end
 end
 
 class Game
