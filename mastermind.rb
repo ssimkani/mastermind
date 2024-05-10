@@ -17,9 +17,8 @@ class MasterMind
     @code_maker = 'Player'
     @code_breaker = 'Computer'
     counter = 0
-    end
   end
-  
+
   def player_guess_play
     @code_maker = 'Computer'
     @code_breaker = 'Player'
@@ -111,7 +110,6 @@ class MasterMind
     num_str.each { |num| multiple_count_hash[num] = num_str.count(num) }
     multiple_count_hash
   end
-
   attr_reader :code
 end
 
