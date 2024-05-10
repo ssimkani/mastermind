@@ -7,8 +7,8 @@ class MasterMind
 
   def initialize
     @winner = nil
-    @code_breaker = ''
     @code_maker = ''
+    @code_breaker = ''
     @code = []
     @first_call_computer_code = false
   end
@@ -111,6 +111,9 @@ class MasterMind
     multiple_count_hash
   end
   attr_reader :code
+end
+
+module Algorithm
 end
 
 class Game
