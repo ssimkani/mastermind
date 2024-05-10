@@ -2,7 +2,7 @@
 
 require 'set'
 
-class PlayerMasterMind
+class MasterMind
   attr_reader :winner, :code_maker, :code_breaker
 
   def initialize
@@ -13,7 +13,7 @@ class PlayerMasterMind
     @first_call_computer_code = false
   end
 
-  def play
+  def player_guess_play
     @code_maker = 'Computer'
     @code_breaker = 'Player'
     counter = 0
