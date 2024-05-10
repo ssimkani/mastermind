@@ -106,3 +106,12 @@ end
 
 class ComputerMasterMind
 end
+
+class Game
+  def play
+    print 'Enter 0 to be the code maker or 1 to be the code breaker: '
+    select = gets.chomp.to_i
+    ComputerMasterMind.new.play if select.zero?
+    PlayerMasterMind.new.play if select == 1
+  end
+end
