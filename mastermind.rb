@@ -103,3 +103,6 @@ class MasterMind
 
   attr_reader :code
 end
+
+class ComputerMasterMind
+end
