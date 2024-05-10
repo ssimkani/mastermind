@@ -13,6 +13,13 @@ class MasterMind
     @first_call_computer_code = false
   end
 
+  def computer_guess_play
+    @code_maker = 'Player'
+    @code_breaker = 'Computer'
+    counter = 0
+    end
+  end
+  
   def player_guess_play
     @code_maker = 'Computer'
     @code_breaker = 'Player'
@@ -115,7 +122,7 @@ class Game
   def play
     print 'Enter 0 to be the code maker or 1 to be the code breaker: '
     select = gets.chomp.to_i
-    ComputerMasterMind.new.play if select.zero?
-    PlayerMasterMind.new.play if select == 1
+    MasterMind.new.computer_guess_play if select.zero?
+    MasterMind.new.player_guess_play if select == 1
   end
 end
