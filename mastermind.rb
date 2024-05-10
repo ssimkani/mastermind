@@ -2,7 +2,7 @@
 
 require 'set'
 
-class MasterMind
+class PlayerMasterMind
   attr_reader :winner
 
   def initialize
