@@ -3,11 +3,9 @@
 require 'set'
 
 class MasterMind
-  attr_reader :code_maker, :code_breaker, :winner
+  attr_reader :winner
 
   def initialize
-    @code_maker = 'Player'
-    @code_breaker = 'Computer'
     @winner = nil
     @code = []
     @first_call_computer_code = false
