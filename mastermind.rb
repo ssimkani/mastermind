@@ -3,15 +3,19 @@
 require 'set'
 
 class PlayerMasterMind
-  attr_reader :winner
+  attr_reader :winner, :code_maker, :code_breaker
 
   def initialize
     @winner = nil
+    @code_breaker = ''
+    @code_maker = ''
     @code = []
     @first_call_computer_code = false
   end
 
   def play
+    @code_maker = 'Computer'
+    @code_breaker = 'Player'
     counter = 0
     while counter < 12 && winner.nil?
       display_feedback(player_guess(counter), computer_code)
