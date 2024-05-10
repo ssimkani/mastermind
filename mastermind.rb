@@ -113,9 +113,6 @@ class MasterMind
   attr_reader :code
 end
 
-class ComputerMasterMind
-end
-
 class Game
   def play
     print 'Enter 0 to be the code maker or 1 to be the code breaker: '
