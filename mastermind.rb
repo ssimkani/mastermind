@@ -119,17 +119,17 @@ end
 module Algorithm
   protected
 
-  def main_loop(solid_pegs, total_pegs, previous_pegs)
+  def main_loop
     counter = 1
     guess = '1111'
+    previous_pegs = 0
     while counter <= 6 || total_pegs != 4
-      computer_guess = initial_guesses(guess, total_pegs, previous_pegs, counter)
+      feedback(guess)
+      computer_guess = initial_guesses(guess, feedback(guess)[1], previous_pegs, counter)
+      previous_pegs = feedback(guess)[1]
       guess = computer_guess
       counter += 1
     end
-    permutations = guess.split('').permutation.to_a.delete(guess.split(''))
-    guess = permutations.sample
-    solid_peg_checker(guess, permutations, solid_pegs)
   end
 
   def initial_guesses(guess, total_pegs, previous_pegs, counter)
@@ -141,19 +141,21 @@ module Algorithm
     new_guess
   end
 
+  def guesses_after_four_pegs(guess, solid_pegs)
+  until solid_pegs == 4
+    permutations = guess.split('').permutation.to_a.delete(guess.split(''))
+    guess = permutations.sample
+    feedback(guess)
+  end
+
   def feedback(guess)
     puts "The computers guess was #{guess}.\n"
     print 'Enter Correct Numbers in the Correct Spot: '
-    solid_pegs = gets.chomp
+    solid_pegs = gets.chomp.to_i
     print "\nEnter Correct Numbers Only: "
-    empty_pegs = gets.chomp
+    empty_pegs = gets.chomp.to_i
     [solid_pegs, solid_pegs + empty_pegs]
   end
-
-  def solid_peg_checker(guess, arr, solid_pegs)
-    arr.delete(guess.split('')) unless solid_pegs == 4
-  end
-end
 
 class Game
   def play
