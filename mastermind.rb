@@ -130,6 +130,7 @@ module Algorithm
       guess = computer_guess
       counter += 1
     end
+    guesses_after_four_pegs(guess, feedback(guess)[0])
   end
 
   def initial_guesses(guess, total_pegs, previous_pegs, counter)
