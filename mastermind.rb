@@ -78,10 +78,10 @@ class MasterMind
     @code_breaker = 'Computer'
     print "\nEnter 4 numbers between 1 and 6: "
     player_code = gets.chomp
+    puts "Your code: #{player_code}"
     if main_loop == 4
       puts 'The computer guessed the code correctly'
     else
-      puts "Your code: #{player_code}"
       main_loop
     end
   end
