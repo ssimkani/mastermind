@@ -18,7 +18,11 @@ class MasterMind
   def computer_guess_play
     @code_maker = 'Player'
     @code_breaker = 'Computer'
-    counter = 0
+    if main_loop == 4
+      puts 'The computer guessed the code correctly'
+    else
+      main_loop
+    end
   end
 
   def player_guess_play
