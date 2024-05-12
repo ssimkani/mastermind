@@ -122,7 +122,9 @@ class Algorithm
       guess = computer_guess
       counter += 1
     end
-    guesses_after_four_pegs(solid_pegs, guess)
+    permutations = guess.split('').permutation.to_a.delete(guess.split(''))
+    guess = permutations.sample
+    black_peg_checker(guess, permutations, solid_pegs)
   end
 
   def initial_guesses(guess, total_pegs, previous_pegs, counter)
@@ -134,13 +136,8 @@ class Algorithm
     new_guess
   end
 
-  def guesses_after_four_pegs(solid_pegs, guess)
-    permutations(guess.split('')) unless solid_pegs == 4
-  end
-
-  def permutations(arr)
-    permutations = arr.permutation.to_a.delete(arr)
-    [permutations.sample, permutations.delete(permutations.sample)]
+  def black_peg_checker(guess, arr, solid_pegs)
+    arr.delete(guess.split('')) unless solid_pegs == 4
   end
 end
 
