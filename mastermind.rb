@@ -114,16 +114,7 @@ class MasterMind
 end
 
 class Algorithm
-  attr_accessor :solid_pegs, :total_pegs, :previous_pegs, :guess
-
-  def initialize(solid_pegs, total_pegs, previous_pegs, guess)
-    @solid_pegs = solid_pegs
-    @total_pegs = total_pegs
-    @previous_pegs = previous_pegs
-    @guess = guess
-  end
-
-  def main_loop
+  def main_loop(solid_pegs, total_pegs, previous_pegs)
     counter = 1
     guess = '1111'
     while counter <= 6 || total_pegs != 4
@@ -131,6 +122,7 @@ class Algorithm
       guess = computer_guess
       counter += 1
     end
+    guesses_after_four_pegs(solid_pegs, guess)
   end
 
   def initial_guesses(guess, total_pegs, previous_pegs, counter)
