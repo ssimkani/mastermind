@@ -114,18 +114,19 @@ class MasterMind
 end
 
 class Algorithm
-  attr_accessor :solid_pegs, :total_pegs, :previous_pegs
+  attr_accessor :solid_pegs, :total_pegs, :previous_pegs, :guess
 
-  def initialize(solid_pegs, total_pegs, previous_pegs)
+  def initialize(solid_pegs, total_pegs, previous_pegs, guess)
     @solid_pegs = solid_pegs
     @total_pegs = total_pegs
     @previous_pegs = previous_pegs
+    @guess = guess
   end
 
   def main_loop
     counter = 1
     guess = '1111'
-    while counter <= 6 || solid_pegs != 4 || total_pegs != 4
+    while counter <= 6 || total_pegs != 4
       computer_guess = next_guess(guess, total_pegs, previous_pegs, counter)
       guess = computer_guess
     end
@@ -138,6 +139,11 @@ class Algorithm
       guess.gsub(counter.to_s, (counter + 1).to_s)
     end
   end
+end
+
+def permutations(arr)
+  permutations = arr.permutation.to_a.delete(arr)
+  [permutations.sample, permutations.delete(permutations.sample)]
 end
 
 class Game
