@@ -127,24 +127,29 @@ class Algorithm
     counter = 1
     guess = '1111'
     while counter <= 6 || total_pegs != 4
-      computer_guess = next_guess(guess, total_pegs, previous_pegs, counter)
+      computer_guess = initial_guesses(guess, total_pegs, previous_pegs, counter)
       guess = computer_guess
       counter += 1
     end
   end
 
-  def next_guess(guess, total_pegs, previous_pegs, counter)
+  def initial_guesses(guess, total_pegs, previous_pegs, counter)
     if total_pegs - previous_pegs >= 1
-      @guess = guess.gsub(counter.to_s, (counter + 1).to_s, 4 - total_pegs)
+      new_guess = guess.gsub(counter.to_s, (counter + 1).to_s, 4 - total_pegs)
     elsif total_pegs == previous_pegs
-      guess.gsub(counter.to_s, (counter + 1).to_s)
+      new_guess = guess.gsub(counter.to_s, (counter + 1).to_s)
     end
+    new_guess
   end
-end
 
-def permutations(arr)
-  permutations = arr.permutation.to_a.delete(arr)
-  [permutations.sample, permutations.delete(permutations.sample)]
+  def guesses_after_four_pegs(solid_pegs, guess)
+    permutations(guess.split('')) unless solid_pegs == 4
+  end
+
+  def permutations(arr)
+    permutations = arr.permutation.to_a.delete(arr)
+    [permutations.sample, permutations.delete(permutations.sample)]
+  end
 end
 
 class Game
