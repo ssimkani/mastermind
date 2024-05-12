@@ -113,7 +113,7 @@ class MasterMind
   attr_reader :code
 end
 
-class Algorithm
+module Algorithm
   def main_loop(solid_pegs, total_pegs, previous_pegs)
     counter = 1
     guess = '1111'
@@ -124,7 +124,7 @@ class Algorithm
     end
     permutations = guess.split('').permutation.to_a.delete(guess.split(''))
     guess = permutations.sample
-    black_peg_checker(guess, permutations, solid_pegs)
+    solid_peg_checker(guess, permutations, solid_pegs)
   end
 
   def initial_guesses(guess, total_pegs, previous_pegs, counter)
@@ -136,7 +136,7 @@ class Algorithm
     new_guess
   end
 
-  def black_peg_checker(guess, arr, solid_pegs)
+  def solid_peg_checker(guess, arr, solid_pegs)
     arr.delete(guess.split('')) unless solid_pegs == 4
   end
 end
