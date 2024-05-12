@@ -10,9 +10,9 @@ module Algorithm
     guess = '1111'
     previous_pegs = 0
     while counter <= 6 || total_pegs != 4
-      feedback(guess)
-      computer_guess = initial_guesses(guess, feedback(guess)[1], previous_pegs, counter)
-      previous_pegs = feedback(guess)[1]
+      total_feedback = feedback(guess)[1]
+      computer_guess = initial_guesses(guess, total_feedback, previous_pegs, counter)
+      previous_pegs = total_feedback
       guess = computer_guess
       counter += 1
     end
@@ -21,7 +21,7 @@ module Algorithm
 
   def initial_guesses(guess, total_pegs, previous_pegs, counter)
     if total_pegs - previous_pegs >= 1
-      new_guess = guess.gsub(counter.to_s, (counter + 1).to_s, 4 - total_pegs)
+      new_guess = replace_first_n_occurrences(guess, counter.to_s, (counter + 1).to_s, 4 - total_pegs)
     elsif total_pegs == previous_pegs
       new_guess = guess.gsub(counter.to_s, (counter + 1).to_s)
     end
@@ -45,6 +45,19 @@ module Algorithm
     empty_pegs = gets.chomp.to_i
     [solid_pegs, solid_pegs + empty_pegs]
   end
+
+  def replace_first_n_occurrences(string, char_to_replace, replacement, number_of_occurrences)
+    count = 0
+    string.gsub!(char_to_replace) do |match|
+      count += 1
+      if count <= number_of_occurrences
+        replacement
+      else
+        match
+      end
+    end
+    string
+  end
 end
 
 class MasterMind
@@ -63,7 +76,7 @@ class MasterMind
   def computer_guess_play
     @code_maker = 'Player'
     @code_breaker = 'Computer'
-    print "\nEnter 4 numbers between 1 and 6:"
+    print "\nEnter 4 numbers between 1 and 6: "
     player_code = gets.chomp
     if main_loop == 4
       puts 'The computer guessed the code correctly'
