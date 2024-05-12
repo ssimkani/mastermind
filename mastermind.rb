@@ -141,6 +141,15 @@ module Algorithm
     new_guess
   end
 
+  def feedback(guess)
+    puts "The computers guess was #{guess}.\n"
+    print 'Enter Correct Numbers in the Correct Spot: '
+    solid_pegs = gets.chomp
+    print "\nEnter Correct Numbers Only: "
+    empty_pegs = gets.chomp
+    [solid_pegs, solid_pegs + empty_pegs]
+  end
+
   def solid_peg_checker(guess, arr, solid_pegs)
     arr.delete(guess.split('')) unless solid_pegs == 4
   end
