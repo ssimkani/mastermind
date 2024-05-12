@@ -119,6 +119,18 @@ class Algorithm
   def initialize
     @guess = '1111'
   end
+
+  def next_guess(guess, solid_pegs, total_pegs, previous_pegs, counter)
+    if solid_pegs == 4
+      'Computer Won'
+    elsif total_pegs == 4
+      nil
+    elsif total_pegs - previous_pegs >= 1
+      @guess = guess.gsub(counter.to_s, (counter + 1).to_s, 4 - total_pegs)
+    elsif total_pegs == previous_pegs
+      guess.gsub(counter.to_s, (counter + 1).to_s)
+    end
+  end
 end
 
 class Game
