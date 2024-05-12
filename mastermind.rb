@@ -129,6 +129,7 @@ class Algorithm
     while counter <= 6 || total_pegs != 4
       computer_guess = next_guess(guess, total_pegs, previous_pegs, counter)
       guess = computer_guess
+      counter += 1
     end
   end
 
