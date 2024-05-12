@@ -3,6 +3,8 @@
 require 'set'
 
 class MasterMind
+  include Algorithm
+
   attr_reader :winner, :code_maker, :code_breaker
 
   def initialize
@@ -110,10 +112,13 @@ class MasterMind
     num_str.each { |num| multiple_count_hash[num] = num_str.count(num) }
     multiple_count_hash
   end
+
   attr_reader :code
 end
 
 module Algorithm
+  protected
+
   def main_loop(solid_pegs, total_pegs, previous_pegs)
     counter = 1
     guess = '1111'
