@@ -142,10 +142,12 @@ module Algorithm
   end
 
   def guesses_after_four_pegs(guess, solid_pegs)
-  until solid_pegs == 4
-    permutations = guess.split('').permutation.to_a.delete(guess.split(''))
-    guess = permutations.sample
-    feedback(guess)
+    until solid_pegs == 4
+      permutations = guess.split('').permutation.to_a.delete(guess.split(''))
+      guess = permutations.sample
+      feedback(guess)
+      solid_pegs = feedback(guess)[0]
+    end
   end
 
   def feedback(guess)
@@ -156,6 +158,7 @@ module Algorithm
     empty_pegs = gets.chomp.to_i
     [solid_pegs, solid_pegs + empty_pegs]
   end
+end
 
 class Game
   def play
