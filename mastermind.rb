@@ -114,15 +114,24 @@ class MasterMind
 end
 
 class Algorithm
-  attr_reader :guess
+  attr_accessor :guess
 
   def initialize
     @guess = '1111'
   end
 
+  def main_loop
+    counter = 1
+    previous_pegs = 0
+    while counter <= 6
+      computer_guess = next_guess(guess, solid_pegs, total_pegs, previous_pegs, counter)
+      guess = computer_guess
+      break if guess.nil? || guess.zero?
+    end
+
   def next_guess(guess, solid_pegs, total_pegs, previous_pegs, counter)
     if solid_pegs == 4
-      'Computer Won'
+      0
     elsif total_pegs == 4
       nil
     elsif total_pegs - previous_pegs >= 1
