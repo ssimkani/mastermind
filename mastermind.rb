@@ -12,7 +12,7 @@ module Algorithm
     total_pegs = 0
     while counter <= 6 || total_pegs != 4
       total_pegs = feedback(guess)[1]
-      computer_guess = initial_guesses(guess, total_feedback, previous_pegs, counter)
+      computer_guess = initial_guesses(guess, total_pegs, previous_pegs, counter)
       previous_pegs = total_pegs
       guess = computer_guess
       counter += 1
@@ -40,7 +40,7 @@ module Algorithm
   end
 
   def feedback(guess)
-    puts "The computers guess was #{guess}.\n"
+    puts "The computers guess was #{guess}.\n\n"
     print 'Solid Pegs: '
     solid_pegs = gets.chomp.to_i
     print "\nEmpty Pegs: "
