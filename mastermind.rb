@@ -17,13 +17,7 @@ module Algorithm
       guess = computer_guess
       counter += 1
     end
-    (12 - counter).times do
-      permutations = guess.split('').permutation.to_a.delete(guess.split(''))
-      guess = permutations.sample.join
-      solid_pegs = feedback(guess)[0]
-      break if solid_pegs == 4
-    end
-    solid_pegs
+    final_guesses(guess, counter)
   end
 
   def initial_guesses(guess, total_pegs, previous_pegs, counter)
@@ -33,6 +27,16 @@ module Algorithm
       new_guess = guess.gsub(counter.to_s, (counter + 1).to_s)
     end
     new_guess
+  end
+
+  def final_guesses(guess, counter)
+    (12 - counter).times do
+      permutations = guess.split('').permutation.to_a.delete(guess.split(''))
+      guess = permutations.sample.join
+      solid_pegs = feedback(guess)[0]
+      break if solid_pegs == 4
+    end
+    solid_pegs
   end
 
   def feedback(guess)
