@@ -45,6 +45,10 @@ module Algorithm
     solid_pegs = gets.chomp.to_i
     print "\nEmpty Pegs: "
     empty_pegs = gets.chomp.to_i
+    if (solid_pegs <= 0 && solid_pegs <= 4) || (empty_pegs <= 0 && empty_pegs <= 4)
+      puts 'Invalid value for pegs.'
+      feedback(guess)
+    end
     [solid_pegs, solid_pegs + empty_pegs]
   end
 
