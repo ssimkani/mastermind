@@ -84,7 +84,7 @@ class MasterMind
     @code_breaker = 'Computer'
     print "\nEnter 4 numbers between 1 and 6: "
     player_code = gets.chomp
-    if guess.chars.all? { |char| char.to_i <= 6 && char.to_i.positive? } && guess.length == 4
+    if !player_code.chars.all? { |char| char.to_i <= 6 && char.to_i.positive? } || !player_code.length == 4
       puts "Invalid Code Entered.\n"
       computer_guess_play
     end
