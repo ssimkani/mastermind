@@ -83,8 +83,10 @@ class MasterMind
     puts "\nYour code: #{player_code}"
     if main_loop == 4
       puts "\nThe computer guessed the code correctly."
+      @winner = 'Computer'
     else
       puts "\nThe computer guessed the code incorrectly."
+      @winner = 'Player'
     end
   end
 
