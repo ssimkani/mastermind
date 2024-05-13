@@ -17,7 +17,11 @@ module Algorithm
       guess = computer_guess
       counter += 1
     end
-    guesses_after_four_pegs(guess, feedback(guess)[0])
+    (12 - counter).times do
+      guess_after_four_pegs = guesses_after_four_pegs(guess, feedback(guess)[0])
+      break if guess_after_four_pegs == 4
+    end
+    guess_after_four_pegs
   end
 
   def initial_guesses(guess, total_pegs, previous_pegs, counter)
@@ -32,17 +36,17 @@ module Algorithm
   def guesses_after_four_pegs(guess, solid_pegs)
     until solid_pegs == 4
       permutations = guess.split('').permutation.to_a.delete(guess.split(''))
-      guess = permutations.sample
-      feedback(guess)
+      guess = permutations.sample.join
       solid_pegs = feedback(guess)[0]
     end
+    solid_pegs
   end
 
   def feedback(guess)
     puts "The computers guess was #{guess}.\n"
-    print 'Enter Correct Numbers in the Correct Spot: '
+    print 'Solid Pegs: '
     solid_pegs = gets.chomp.to_i
-    print "\nEnter Correct Numbers Only: "
+    print "\nEmpty Pegs: "
     empty_pegs = gets.chomp.to_i
     [solid_pegs, solid_pegs + empty_pegs]
   end
@@ -79,11 +83,11 @@ class MasterMind
     @code_breaker = 'Computer'
     print "\nEnter 4 numbers between 1 and 6: "
     player_code = gets.chomp
-    puts "Your code: #{player_code}"
+    puts "\nYour code: #{player_code}"
     if main_loop == 4
-      puts 'The computer guessed the code correctly'
+      puts "\nThe computer guessed the code correctly."
     else
-      main_loop
+      puts "\nThe computer guessed the code incorrectly."
     end
   end
 
