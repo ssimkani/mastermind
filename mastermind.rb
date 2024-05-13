@@ -18,10 +18,12 @@ module Algorithm
       counter += 1
     end
     (12 - counter).times do
-      guess_after_four_pegs = guesses_after_four_pegs(guess, feedback(guess)[0])
-      break if guess_after_four_pegs == 4
+      permutations = guess.split('').permutation.to_a.delete(guess.split(''))
+      guess = permutations.sample.join
+      solid_pegs = feedback(guess)[0]
+      break if solid_pegs == 4
     end
-    guess_after_four_pegs
+    solid_pegs
   end
 
   def initial_guesses(guess, total_pegs, previous_pegs, counter)
@@ -31,15 +33,6 @@ module Algorithm
       new_guess = guess.gsub(counter.to_s, (counter + 1).to_s)
     end
     new_guess
-  end
-
-  def guesses_after_four_pegs(guess, solid_pegs)
-    until solid_pegs == 4
-      permutations = guess.split('').permutation.to_a.delete(guess.split(''))
-      guess = permutations.sample.join
-      solid_pegs = feedback(guess)[0]
-    end
-    solid_pegs
   end
 
   def feedback(guess)
