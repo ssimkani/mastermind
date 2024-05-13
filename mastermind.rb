@@ -31,7 +31,7 @@ module Algorithm
 
   def final_guesses(guess, counter)
     (12 - counter).times do
-      permutations = guess.split('').permutation.to_a.delete(guess.split(''))
+      permutations = guess.split('').permutation.to_a.reject { |perm| perm.join == guess }
       guess = permutations.sample.join
       solid_pegs = feedback(guess)[0]
       break if solid_pegs == 4
