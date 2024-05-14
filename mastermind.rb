@@ -135,7 +135,7 @@ class MasterMind
       display_feedback(player_guess(counter), computer_code)
       counter += 1
     end
-    puts "You guessed the code in #{counter + 1} guesses!" if winner == 'Player'
+    puts "You guessed the code in #{counter} guesses!" if winner == 'Player'
 
     puts "You didn't guess the code correctly. The correct code was #{code.join}." if winner.nil?
     @winner = 'Computer'
