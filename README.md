@@ -2,7 +2,7 @@
 
 ## Description and How to Play
 
-This project is a re-creation of the game Mastermind where one player creates a code and the other player tries to guess it. The code is a sequence of 4 numbers between 1 and 6. The code breaker enters their guess and the code maker gives feedback in the form of "solid pegs" and "empty pegs". A "solid peg" represents a number in the guess that is present in the code and in the correct position. An "empty peg" represents a number in the guess that is present in the code but not in the correct position. 
+This project is a re-creation of the game Mastermind where one player creates a code and the other player tries to guess it. The code is a sequence of 4 numbers between 1 and 6. The code breaker enters their guess and the code maker gives feedback in the form of "solid pegs" and "empty pegs". A "solid peg" represents a number in the guess that is present in the code and in the correct position. An "empty peg" represents a number in the guess that is present in the code but not in the correct position. The solid pegs always take precedence. 
 
 solid pegs: "●"<br/>
 empty pegs: "○"<br/>
