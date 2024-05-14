@@ -40,7 +40,6 @@ module Algorithm
   end
 
   def feedback(guess)
-    puts "\nYour code: #{input_player_code}\n\n"
     puts "The computers guess was #{guess}.\n\n"
     print 'Solid Pegs: '
     solid_pegs = gets.chomp.to_i
@@ -83,18 +82,19 @@ class MasterMind
   def input_player_code
     print "\nEnter 4 numbers between 1 and 6: "
     player_code = gets.chomp
-    return unless !player_code.chars.all? do |char|
-                    char.to_i <= 6 && char.to_i.positive?
-                  end || !player_code.length == 4
+    return player_code if player_code.chars.all? do |char|
+                            (char.to_i <= 6 && char.to_i.positive?) || !player_code.length == 4
+                          end
 
     puts "Invalid Code Entered.\n"
-    player_code
+    input_player_code
   end
 
   def computer_guess_play
     @code_maker = 'Player'
     @code_breaker = 'Computer'
-    puts "\nYour code: #{input_player_code}\n\n"
+    player_code = input_player_code
+    puts "\nYour code: #{player_code}\n\n"
     if main_loop == 4
       puts "\nThe computer guessed the code correctly."
       @winner = 'Computer'
