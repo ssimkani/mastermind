@@ -83,7 +83,7 @@ class MasterMind
     print "\nEnter 4 numbers between 1 and 6: "
     player_code = gets.chomp
     return player_code if player_code.chars.all? do |char|
-                            (char.to_i <= 6 && char.to_i.positive?) || !player_code.length == 4
+                            (char.to_i <= 6 && char.to_i.positive?) && player_code.length == 4
                           end
 
     puts "Invalid Code Entered.\n"
