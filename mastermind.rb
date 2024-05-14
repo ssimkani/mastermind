@@ -43,13 +43,15 @@ module Algorithm
         guess = permutations.sample.join
       rescue NoMethodError
         puts "\nThe computer won in #{counter - 1} guesses."
-        exit
+        break
       end
-      break if feedback(guess, counter)[0] == 4
-
+      if feedback(guess, counter)[0] == 4
+        puts "\nThe computer won in #{counter - 1} guesses."
+        break
+      end
       counter += 1
     end
-    [guess, counter]
+    guess
   end
 
   def input_player_code
@@ -107,11 +109,10 @@ class MasterMind
   def computer_guess_play
     @code_maker = 'Player'
     @code_breaker = 'Computer'
-    if main_loop[0] == player_code
-      puts "\nThe computer guessed the code correctly."
+    if main_loop == player_code
       @winner = 'Computer'
     else
-      puts "\nThe computer guessed the code incorrectly."
+      puts "\nThe computer didn't guess the code in the maximum number of guesses."
       @winner = 'Player'
     end
   end
