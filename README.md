@@ -2,14 +2,21 @@
 
 ## Description and How to Play
 
-This project is a re-creation of the game Mastermind where one player creates a code and the other player tries to guess it. The code is a sequence of 4 numbers between 1 and 6. The guesser enters their guess, and the creator of the code gives feedback in the form of "solid pegs" and "empty pegs". A "solid peg" represents a number in the guess that is in the present in the code and in the correct position. An "empty peg" represents a number in the guess that is present in the code but not in the correct position. 
+This project is a re-creation of the game Mastermind where one player creates a code and the other player tries to guess it. The code is a sequence of 4 numbers between 1 and 6. The code breaker enters their guess and the code maker gives feedback in the form of "solid pegs" and "empty pegs". A "solid peg" represents a number in the guess that is in the present in the code and in the correct position. An "empty peg" represents a number in the guess that is present in the code but not in the correct position. 
 
-solid pegs: "●"
+solid pegs: "●"<br/>
 empty pegs: "○"
 
- The guesser wins if they correctly guess. The game ends when the guesser correctly guesses the code. If the code breaker doesn't guess the correct code in 12 or less guesses, then the code maker is the winner.
+The player has the opportunity to be both the code maker or code breaker. The other player is the computer.
+The game ends when the code breaker correctly guesses the code or after 12 guesses. If the code breaker doesn't guess the correct code in 12 or less guesses, then the code maker is the winner.
 
 The game is played in the command line. To play, run `ruby mastermind.rb`.
+
+## Computer Algorithm For Guessing the Players Code
+The algorithm is as follows: 
+The computer starts with guessing 1111. Based on the number of pegs solid and empty, the computer generates a new guess. This new guess keeps the same number of ones as the feedback (number of pegs) and replaces the other ones with twos. For the next guess, if the feedback is greater than the previous number of pegs, the difference is the amount of twos that are kept. the rest of the twos are replaced with threes. The computer repeats this process until the feedback is equal to four. Then, the computer generates all the possible permutations of the guess that yields four total pegs until four solid pegs or the maximum number of guesses is reached. This algorithm doesn't guarantee that the computer will guess the correct code each time which makes it fair for the player. 
+
+Credit for this algorithm goes to: https://puzzling.stackexchange.com/questions/546/clever-ways-to-solve-mastermind
 
 ## What I Learned
 
