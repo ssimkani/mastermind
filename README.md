@@ -20,5 +20,3 @@ I have demonstrated the following core programming skills:
 * Knowledge of how to use methods to break up code into smaller, more manageable pieces
 * Understanding of how to use loops and conditional statements to control the flow of a program
 * Basic understanding of data types and how to work with them (e.g. strings, integers, arrays, etc.)
-
-
