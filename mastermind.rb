@@ -5,11 +5,14 @@ require 'set'
 module Algorithm
   protected
 
+  @player_code = ''
+
   def main_loop
     counter = 1
     guess = '1111'
     previous_pegs = 0
     total_pegs = 0
+    @player_code = input_player_code
     while counter <= 6 && total_pegs != 4
       total_pegs = feedback(guess, counter)[1]
       computer_guess = initial_guesses(guess, total_pegs, previous_pegs, counter)
@@ -40,11 +43,23 @@ module Algorithm
     [guess, counter]
   end
 
+  def input_player_code
+    print "\nEnter 4 numbers between 1 and 6: "
+    player_code = gets.chomp
+    return player_code if player_code.chars.all? do |char|
+                            (char.to_i <= 6 && char.to_i.positive?) && player_code.length == 4
+                          end
+
+    puts "Invalid Code Entered.\n"
+    input_player_code
+  end
+
   def feedback(guess, counter)
+    puts "\nYour code: #{@player_code}\n\n"
     puts "Guess number #{counter} is #{guess}.\n\n"
     print 'Solid Pegs: '
     solid_pegs = gets.chomp.to_i
-    print "\nEmpty Pegs: "
+    print 'Empty Pegs: '
     empty_pegs = gets.chomp.to_i
     if (solid_pegs.negative? && solid_pegs > 4) || (empty_pegs.negative? && empty_pegs > 4)
       puts 'Invalid value for pegs.'
@@ -80,22 +95,9 @@ class MasterMind
     @first_call_computer_code = false
   end
 
-  def input_player_code
-    print "\nEnter 4 numbers between 1 and 6: "
-    player_code = gets.chomp
-    return player_code if player_code.chars.all? do |char|
-                            (char.to_i <= 6 && char.to_i.positive?) && player_code.length == 4
-                          end
-
-    puts "Invalid Code Entered.\n"
-    input_player_code
-  end
-
   def computer_guess_play
     @code_maker = 'Player'
     @code_breaker = 'Computer'
-    player_code = input_player_code
-    puts "\nYour code: #{player_code}\n\n"
     if main_loop[0] == player_code
       puts "\nThe computer guessed the code correctly."
       @winner = 'Computer'
