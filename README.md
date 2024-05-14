@@ -1,4 +1,4 @@
-# mastermind
+# MasterMind
 
 ## Description and How to Play
 
