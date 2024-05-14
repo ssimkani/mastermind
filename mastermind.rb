@@ -35,7 +35,11 @@ module Algorithm
   def final_guesses(guess, counter)
     while (12 - counter + 1).positive?
       permutations = guess.split('').permutation.to_a.reject { |perm| perm.join == guess }
-      guess = permutations.sample.join
+      begin
+        guess = permutations.sample.join
+      rescue NoMethodError
+        puts "The computer won in #{counter} guesses."
+      end
       break if feedback(guess, counter)[0] == 4
 
       counter += 1
