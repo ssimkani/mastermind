@@ -10,12 +10,13 @@ module Algorithm
     guess = '1111'
     previous_pegs = 0
     total_pegs = 0
-    while counter <= 6 || total_pegs != 4
+    while counter <= 6 && total_pegs != 4
       total_pegs = feedback(guess)[1]
       computer_guess = initial_guesses(guess, total_pegs, previous_pegs, counter)
       previous_pegs = total_pegs
       guess = computer_guess
       counter += 1
+      p counter
     end
     final_guesses(guess, counter)
   end
