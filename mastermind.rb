@@ -15,9 +15,9 @@ module Algorithm
     counter = 1
     guess = '1111'
     previous_pegs = 0
-    total_pegs = 0
+    total_pegs = [0, 0]
     self.player_code = input_player_code
-    while counter <= 6 && total_pegs != 4
+    while counter <= 6 && total_pegs[1] != 4
       total_pegs = feedback(guess, counter)
       break if total_pegs[0] == 4
 
