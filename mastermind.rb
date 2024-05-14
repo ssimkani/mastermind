@@ -5,14 +5,18 @@ require 'set'
 module Algorithm
   protected
 
-  @player_code = ''
+  attr_accessor :player_code
+
+  def initialize
+    @player_code = ''
+  end
 
   def main_loop
     counter = 1
     guess = '1111'
     previous_pegs = 0
     total_pegs = 0
-    @player_code = input_player_code
+    self.player_code = input_player_code
     while counter <= 6 && total_pegs != 4
       total_pegs = feedback(guess, counter)[1]
       computer_guess = initial_guesses(guess, total_pegs, previous_pegs, counter)
@@ -38,7 +42,7 @@ module Algorithm
       begin
         guess = permutations.sample.join
       rescue NoMethodError
-        puts "The computer won in #{counter} guesses."
+        puts "\nThe computer won in #{counter - 1} guesses."
         exit
       end
       break if feedback(guess, counter)[0] == 4
@@ -60,7 +64,7 @@ module Algorithm
   end
 
   def feedback(guess, counter)
-    puts "\nYour code: #{@player_code}\n\n"
+    puts "\nYour code: #{player_code}"
     puts "Guess number #{counter} is #{guess}.\n\n"
     print 'Solid Pegs: '
     solid_pegs = gets.chomp.to_i
