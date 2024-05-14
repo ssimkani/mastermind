@@ -2,6 +2,7 @@
 
 require 'set'
 
+# This module contains the algorithm used by the computer for guessing the code
 module Algorithm
   protected
 
@@ -103,6 +104,9 @@ module Algorithm
   end
 end
 
+# MasterMind is a class that contains the game logic for the game Mastermind.
+# It generates a code for the code maker and allows the user to guess it.
+# The winner is determined by the number of solid pegs the user enters.
 class MasterMind
   include Algorithm
 
@@ -222,6 +226,7 @@ class MasterMind
   attr_reader :code
 end
 
+# Game is a class that asks the user if they want to be a code maker or code breaker
 class Game
   def play
     print "\nEnter 0 to be the code maker or 1 to be the code breaker: "
