@@ -11,7 +11,7 @@ module Algorithm
     previous_pegs = 0
     total_pegs = 0
     while counter <= 6 && total_pegs != 4
-      total_pegs = feedback(guess)[1]
+      total_pegs = feedback(guess, counter)[1]
       computer_guess = initial_guesses(guess, total_pegs, previous_pegs, counter)
       previous_pegs = total_pegs
       guess = computer_guess
@@ -30,11 +30,12 @@ module Algorithm
   end
 
   def final_guesses(guess, counter)
-    while (12 - counter).positive?
+    while (12 - counter + 1).positive?
       permutations = guess.split('').permutation.to_a.reject { |perm| perm.join == guess }
       guess = permutations.sample.join
+      break if feedback(guess, counter)[0] == 4
+
       counter += 1
-      break if feedback(guess)[0] == 4
     end
     [guess, counter]
   end
@@ -47,7 +48,7 @@ module Algorithm
     empty_pegs = gets.chomp.to_i
     if (solid_pegs.negative? || solid_pegs > 4) || (empty_pegs.negative? || empty_pegs > 4)
       puts 'Invalid value for pegs.'
-      feedback(guess)
+      feedback(guess, counter)
     end
     [solid_pegs, solid_pegs + empty_pegs]
   end
