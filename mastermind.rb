@@ -13,6 +13,9 @@ module Algorithm
   end
 
   def main_loop
+    # Main loop of the algorithm. It generates a guess, asks the user for feedback, and generates a new guess
+    # based on the feedback.
+    # The loop stops when the user guesses the code or the maximum number of guesses is reached.
     counter = 1
     guess = '1111'
     previous_pegs = 0
@@ -121,6 +124,8 @@ class MasterMind
   end
 
   def computer_guess_play
+    # The computer will be the code breaker.
+    # The computer will guess codes until it guesses the correct code or it reaches 12 guesses.
     @code_maker = 'Player'
     @code_breaker = 'Computer'
     if main_loop == player_code
@@ -132,6 +137,8 @@ class MasterMind
   end
 
   def player_guess_play
+    # The player will be the code breaker.
+    # The player will guess codes until they guess the correct code or they reach 12 guesses.
     @code_maker = 'Computer'
     @code_breaker = 'Player'
     counter = 0
@@ -226,7 +233,7 @@ class MasterMind
   attr_reader :code
 end
 
-# Game is a class that asks the user if they want to be a code maker or code breaker
+# Game is a class that asks the user if they want to be the code maker or code breaker
 class Game
   def play
     print "\nEnter 0 to be the code maker or 1 to be the code breaker: "
