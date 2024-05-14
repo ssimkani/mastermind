@@ -18,13 +18,19 @@ module Algorithm
     total_pegs = 0
     self.player_code = input_player_code
     while counter <= 6 && total_pegs != 4
-      total_pegs = feedback(guess, counter)[1]
-      computer_guess = initial_guesses(guess, total_pegs, previous_pegs, counter)
+      total_pegs = feedback(guess, counter)
+      break if total_pegs[0] == 4
+
+      computer_guess = initial_guesses(guess, total_pegs[1], previous_pegs, counter)
       previous_pegs = total_pegs
       guess = computer_guess
       counter += 1
     end
-    final_guesses(guess, counter)
+    if total_pegs[1] == 4
+      guess
+    else
+      final_guesses(guess, counter)
+    end
   end
 
   def initial_guesses(guess, total_pegs, previous_pegs, counter)
@@ -37,8 +43,11 @@ module Algorithm
   end
 
   def final_guesses(guess, counter)
+    arr = []
+    permutations = guess.split('').permutation.to_a
     while (12 - counter + 1).positive?
-      permutations = guess.split('').permutation.to_a.reject { |perm| perm.join == guess }
+      arr << guess.split('')
+      permutations -= arr
       begin
         guess = permutations.sample.join
       rescue NoMethodError
@@ -46,7 +55,7 @@ module Algorithm
         break
       end
       if feedback(guess, counter)[0] == 4
-        puts "\nThe computer won in #{counter - 1} guesses."
+        puts "\nThe computer won in #{counter} guesses."
         break
       end
       counter += 1
@@ -214,7 +223,7 @@ end
 
 class Game
   def play
-    print 'Enter 0 to be the code maker or 1 to be the code breaker: '
+    print "\nEnter 0 to be the code maker or 1 to be the code breaker: "
     select = gets.chomp.to_i
     MasterMind.new.computer_guess_play if select.zero?
     MasterMind.new.player_guess_play if select == 1
