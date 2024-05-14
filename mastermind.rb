@@ -16,7 +16,6 @@ module Algorithm
       previous_pegs = total_pegs
       guess = computer_guess
       counter += 1
-      p counter
     end
     final_guesses(guess, counter)
   end
@@ -31,17 +30,17 @@ module Algorithm
   end
 
   def final_guesses(guess, counter)
-    (12 - counter).times do
+    while (12 - counter).positive?
       permutations = guess.split('').permutation.to_a.reject { |perm| perm.join == guess }
       guess = permutations.sample.join
-      solid_pegs = feedback(guess)[0]
-      break if solid_pegs == 4
+      counter += 1
+      break if feedback(guess)[0] == 4
     end
-    solid_pegs
+    [guess, counter]
   end
 
-  def feedback(guess)
-    puts "The computers guess was #{guess}.\n\n"
+  def feedback(guess, counter)
+    puts "Guess number #{counter} is #{guess}.\n\n"
     print 'Solid Pegs: '
     solid_pegs = gets.chomp.to_i
     print "\nEmpty Pegs: "
@@ -96,7 +95,7 @@ class MasterMind
     @code_breaker = 'Computer'
     player_code = input_player_code
     puts "\nYour code: #{player_code}\n\n"
-    if main_loop == 4
+    if main_loop[0] == player_code
       puts "\nThe computer guessed the code correctly."
       @winner = 'Computer'
     else
