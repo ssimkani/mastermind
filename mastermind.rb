@@ -39,6 +39,7 @@ module Algorithm
         guess = permutations.sample.join
       rescue NoMethodError
         puts "The computer won in #{counter} guesses."
+        exit
       end
       break if feedback(guess, counter)[0] == 4
 
