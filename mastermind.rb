@@ -22,11 +22,12 @@ module Algorithm
       break if total_pegs[0] == 4
 
       computer_guess = initial_guesses(guess, total_pegs[1], previous_pegs, counter)
-      previous_pegs = total_pegs
+      previous_pegs = total_pegs[1]
       guess = computer_guess
       counter += 1
     end
-    if total_pegs[1] == 4
+    if total_pegs[0] == 4
+      puts "\nThe computer won in #{counter - 1} guesses."
       guess
     else
       final_guesses(guess, counter)
@@ -153,7 +154,7 @@ class MasterMind
   end
 
   def player_guess(counter)
-    print "Enter guess number #{counter + 1}: "
+    print "\nEnter guess number #{counter + 1}: "
     guess = gets.chomp
     if guess.chars.all? { |char| char.to_i <= 6 && char.to_i.positive? } && guess.length == 4
       guess
